@@ -1,70 +1,71 @@
-import { WrathAndGloryActor } from "./actor.js";
-import { WrathAndGloryItem } from "./item.js";
-import { AgentSheet } from "../sheet/agent.js";
-import { ThreatSheet } from "../sheet/threat.js";
-import { KeywordSheet } from "../sheet/keyword.js";
-import { TalentSheet } from "../sheet/talent.js";
-import { AbilitySheet } from "../sheet/ability.js";
-import { PsychicPowerSheet } from "../sheet/psychic-power.js";
-import { ArmourSheet } from "../sheet/armour.js";
-import { WeaponSheet } from "../sheet/weapon.js";
-import { WeaponUpgradeSheet } from "../sheet/weapon-upgrade.js";
-import { GearSheet } from "../sheet/gear.js";
-import { AscensionSheet } from "../sheet/ascension.js";
-import { TraumaticInjurySheet } from "../sheet/traumatic-injury.js";
-import { MemorableInjurySheet } from "../sheet/memorable-injury.js";
-import { MutationSheet } from "../sheet/mutation.js";
-import { AmmoSheet } from "../sheet/ammo.js";
-import { AugmenticSheet } from "../sheet/augmentic.js";
-import { initializeHandlebars } from "./handlebars.js";
-import { migrateWorld } from "./migration.js";
-import { prepareCommonRoll, prepareWeaponRoll, prepareDamageRoll, preparePsychicRoll } from "./dialog.js";
-import { commonRoll, weaponRoll, damageRoll, psychicRoll } from "./roll.js";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const actor_js_1 = require("./actor.js");
+const item_js_1 = require("./item.js");
+const agent_js_1 = require("../sheet/agent.js");
+const threat_js_1 = require("../sheet/threat.js");
+const keyword_js_1 = require("../sheet/keyword.js");
+const talent_js_1 = require("../sheet/talent.js");
+const ability_js_1 = require("../sheet/ability.js");
+const psychic_power_js_1 = require("../sheet/psychic-power.js");
+const armour_js_1 = require("../sheet/armour.js");
+const weapon_js_1 = require("../sheet/weapon.js");
+const weapon_upgrade_js_1 = require("../sheet/weapon-upgrade.js");
+const gear_js_1 = require("../sheet/gear.js");
+const ascension_js_1 = require("../sheet/ascension.js");
+const traumatic_injury_js_1 = require("../sheet/traumatic-injury.js");
+const memorable_injury_js_1 = require("../sheet/memorable-injury.js");
+const mutation_js_1 = require("../sheet/mutation.js");
+const ammo_js_1 = require("../sheet/ammo.js");
+const augmentic_js_1 = require("../sheet/augmentic.js");
+const handlebars_js_1 = require("./handlebars.js");
+const migration_js_1 = require("./migration.js");
+const dialog_js_1 = require("./dialog.js");
+const roll_js_1 = require("./roll.js");
 Hooks.once("init", () => {
-  CONFIG.Actor.documentClass = WrathAndGloryActor;
-  CONFIG.Item.documentClass = WrathAndGloryItem;
-  game.wag = {
-    prepareCommonRoll,
-    prepareWeaponRoll,
-    prepareDamageRoll,
-    preparePsychicRoll,
-    commonRoll,
-    weaponRoll,
-    psychicRoll,
-    damageRoll
-  };
-  CONFIG.Combat.initiative = { formula: "(@attributes.initiative.total)d6", decimals: 0 };
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("wrath-and-glory", AgentSheet, { types: ["agent"], makeDefault: true });
-  Actors.registerSheet("wrath-and-glory", ThreatSheet, { types: ["threat"], makeDefault: true });
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("wrath-and-glory", KeywordSheet, { types: ["keyword"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", TalentSheet, { types: ["talent"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", AbilitySheet, { types: ["ability"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", PsychicPowerSheet, { types: ["psychicPower"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", ArmourSheet, { types: ["armour"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", WeaponSheet, { types: ["weapon"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", WeaponUpgradeSheet, { types: ["weaponUpgrade"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", GearSheet, { types: ["gear"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", AscensionSheet, { types: ["ascension"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", TraumaticInjurySheet, { types: ["traumaticInjury"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", MemorableInjurySheet, { types: ["memorableInjury"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", MutationSheet, { types: ["mutation"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", AmmoSheet, { types: ["ammo"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", AmmoSheet, { types: ["ammo"], makeDefault: true });
-  Items.registerSheet("wrath-and-glory", AugmenticSheet, { types: ["augmentic"], makeDefault: true });
-  initializeHandlebars();
-  game.settings.register("wrath-and-glory", "worldSchemaVersion", {
-    name: "World Version",
-    hint: "Used to automatically upgrade worlds data when the system is upgraded.",
-    scope: "world",
-    config: true,
-    default: 0,
-    type: Number,
-  });
+    CONFIG.Actor.documentClass = actor_js_1.WrathAndGloryActor;
+    CONFIG.Item.documentClass = item_js_1.WrathAndGloryItem;
+    game.wag = {
+        prepareCommonRoll: dialog_js_1.prepareCommonRoll,
+        prepareWeaponRoll: dialog_js_1.prepareWeaponRoll,
+        prepareDamageRoll: dialog_js_1.prepareDamageRoll,
+        preparePsychicRoll: dialog_js_1.preparePsychicRoll,
+        commonRoll: roll_js_1.commonRoll,
+        weaponRoll: roll_js_1.weaponRoll,
+        psychicRoll: roll_js_1.psychicRoll,
+        damageRoll: roll_js_1.damageRoll
+    };
+    CONFIG.Combat.initiative = { formula: "(@attributes.initiative.total)d6", decimals: 0 };
+    Actors.unregisterSheet("core", ActorSheet);
+    Actors.registerSheet("wrath-and-glory", agent_js_1.AgentSheet, { types: ["agent"], makeDefault: true });
+    Actors.registerSheet("wrath-and-glory", threat_js_1.ThreatSheet, { types: ["threat"], makeDefault: true });
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet("wrath-and-glory", keyword_js_1.KeywordSheet, { types: ["keyword"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", talent_js_1.TalentSheet, { types: ["talent"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", ability_js_1.AbilitySheet, { types: ["ability"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", psychic_power_js_1.PsychicPowerSheet, { types: ["psychicPower"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", armour_js_1.ArmourSheet, { types: ["armour"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", weapon_js_1.WeaponSheet, { types: ["weapon"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", weapon_upgrade_js_1.WeaponUpgradeSheet, { types: ["weaponUpgrade"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", gear_js_1.GearSheet, { types: ["gear"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", ascension_js_1.AscensionSheet, { types: ["ascension"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", traumatic_injury_js_1.TraumaticInjurySheet, { types: ["traumaticInjury"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", memorable_injury_js_1.MemorableInjurySheet, { types: ["memorableInjury"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", mutation_js_1.MutationSheet, { types: ["mutation"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", ammo_js_1.AmmoSheet, { types: ["ammo"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", ammo_js_1.AmmoSheet, { types: ["ammo"], makeDefault: true });
+    Items.registerSheet("wrath-and-glory", augmentic_js_1.AugmenticSheet, { types: ["augmentic"], makeDefault: true });
+    handlebars_js_1.initializeHandlebars();
+    game.settings.register("wrath-and-glory", "worldSchemaVersion", {
+        name: "World Version",
+        hint: "Used to automatically upgrade worlds data when the system is upgraded.",
+        scope: "world",
+        config: true,
+        default: 0,
+        type: Number,
+    });
 });
-
 Hooks.once("ready", () => {
-  migrateWorld();
+    migration_js_1.migrateWorld();
 });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaG9va3MuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvY29tbW9uL2hvb2tzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEseUNBQWdEO0FBQ2hELHVDQUE4QztBQUM5QyxnREFBK0M7QUFDL0Msa0RBQWlEO0FBQ2pELG9EQUFtRDtBQUNuRCxrREFBaUQ7QUFDakQsb0RBQW1EO0FBQ25ELGdFQUE4RDtBQUM5RCxrREFBaUQ7QUFDakQsa0RBQWlEO0FBQ2pELGtFQUFnRTtBQUNoRSw4Q0FBNkM7QUFDN0Msd0RBQXVEO0FBQ3ZELHNFQUFvRTtBQUNwRSxzRUFBb0U7QUFDcEUsc0RBQXFEO0FBQ3JELDhDQUE2QztBQUM3Qyx3REFBdUQ7QUFDdkQsbURBQXVEO0FBQ3ZELGlEQUE4QztBQUM5QywyQ0FBMEc7QUFDMUcsdUNBQTRFO0FBRTVFLEtBQUssQ0FBQyxJQUFJLENBQUMsTUFBTSxFQUFFLEdBQUcsRUFBRTtJQUN0QixNQUFNLENBQUMsS0FBSyxDQUFDLGFBQWEsR0FBRyw2QkFBa0IsQ0FBQztJQUNoRCxNQUFNLENBQUMsSUFBSSxDQUFDLGFBQWEsR0FBRywyQkFBaUIsQ0FBQztJQUM5QyxJQUFJLENBQUMsR0FBRyxHQUFHO1FBQ1QsaUJBQWlCLEVBQWpCLDZCQUFpQjtRQUNqQixpQkFBaUIsRUFBakIsNkJBQWlCO1FBQ2pCLGlCQUFpQixFQUFqQiw2QkFBaUI7UUFDakIsa0JBQWtCLEVBQWxCLDhCQUFrQjtRQUNsQixVQUFVLEVBQVYsb0JBQVU7UUFDVixVQUFVLEVBQVYsb0JBQVU7UUFDVixXQUFXLEVBQVgscUJBQVc7UUFDWCxVQUFVLEVBQVYsb0JBQVU7S0FDWCxDQUFDO0lBQ0YsTUFBTSxDQUFDLE1BQU0sQ0FBQyxVQUFVLEdBQUcsRUFBRSxPQUFPLEVBQUUsa0NBQWtDLEVBQUUsUUFBUSxFQUFFLENBQUMsRUFBRSxDQUFDO0lBQ3hGLE1BQU0sQ0FBQyxlQUFlLENBQUMsTUFBTSxFQUFFLFVBQVUsQ0FBQyxDQUFD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aUIsRUFBRSxtQkFBUyxFQUFFLEVBQUUsS0FBSyxFQUFFLENBQUMsTUFBTSxDQUFDLEVBQUUsV0FBVyxFQUFFLElBQUksRUFBRSxDQUFDLENBQUM7SUFDMUYsS0FBSyxDQUFDLGFBQWEsQ0FBQyxpQkFBaUIsRUFBRSw2QkFBYyxFQUFFLEVBQUUsS0FBSyxFQUFFLENBQUMsV0FBVyxDQUFDLEVBQUUsV0FBVyxFQUFFLElBQUksRUFBRSxDQUFDLENBQUM7SUFDcEcsb0NBQW9CLEVBQUUsQ0FBQztJQUN2QixJQUFJLENBQUMsUUFBUSxDQUFDLFFBQVEsQ0FBQyxpQkFBaUIsRUFBRSxvQkFBb0IsRUFBRTtRQUM5RCxJQUFJLEVBQUUsZUFBZTtRQUNyQixJQUFJLEVBQUUsd0VBQXdFO1FBQzlFLEtBQUssRUFBRSxPQUFPO1FBQ2QsTUFBTSxFQUFFLElBQUk7UUFDWixPQUFPLEVBQUUsQ0FBQztRQUNWLElBQUksRUFBRSxNQUFNO0tBQ2IsQ0FBQyxDQUFDO0FBQ0wsQ0FBQyxDQUFDLENBQUM7QUFFSCxLQUFLLENBQUMsSUFBSSxDQUFDLE9BQU8sRUFBRSxHQUFHLEVBQUU7SUFDdkIsMkJBQVksRUFBRSxDQUFDO0FBQ2pCLENBQUMsQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgV3JhdGhBbmRHbG9yeUFjdG9yIH0gZnJvbSBcIi4vYWN0b3IuanNcIjtcbmltcG9ydCB7IFdyYXRoQW5kR2xvcnlJdGVtIH0gZnJvbSBcIi4vaXRlbS5qc1wiO1xuaW1wb3J0IHsgQWdlbnRTaGVldCB9IGZyb20gXCIuLi9zaGVldC9hZ2VudC5qc1wiO1xuaW1wb3J0IHsgVGhyZWF0U2hlZXQgfSBmcm9tIFwiLi4vc2hlZXQvdGhyZWF0LmpzXCI7XG5pbXBvcnQgeyBLZXl3b3JkU2hlZXQgfSBmcm9tIFwiLi4vc2hlZXQva2V5d29yZC5qc1wiO1xuaW1wb3J0IHsgVGFsZW50U2hlZXQgfSBmcm9tIFwiLi4vc2hlZXQvdGFsZW50LmpzXCI7XG5pbXBvcnQgeyBBYmlsaXR5U2hlZXQgfSBmcm9tIFwiLi4vc2hlZXQvYWJpbGl0eS5qc1wiO1xuaW1wb3J0IHsgUHN5Y2hpY1Bvd2VyU2hlZXQgfSBmcm9tIFwiLi4vc2hlZXQvcHN5Y2hpYy1wb3dlci5qc1wiO1xuaW1wb3J0IHsgQXJtb3VyU2hlZXQgfSBmcm9tIFwiLi4vc2hlZXQvYXJtb3VyLmpzXCI7XG5pbXBvcnQgeyBXZWFwb25TaGVldCB9IGZyb20gXCIuLi9zaGVldC93ZWFwb24uanNcIjtcbmltcG9ydCB7IFdlYXBvblVwZ3JhZGVTaGVldCB9IGZyb20gXCIuLi9zaGVldC93ZWFwb24tdXBncmFkZS5qc1wiO1xuaW1wb3J0IHsgR2VhclNoZWV0IH0gZnJvbSBcIi4uL3NoZWV0L2dlYXIuanNcIjtcbmltcG9ydCB7IEFzY2Vuc2lvblNoZWV0IH0gZnJvbSBcIi4uL3NoZWV0L2FzY2Vuc2lvbi5qc1wiO1xuaW1wb3J0IHsgVHJhdW1hdGljSW5qdXJ5U2hlZXQgfSBmcm9tIFwiLi4vc2hlZXQvdHJhdW1hdGljLWluanVyeS5qc1wiO1xuaW1wb3J0IHsgTWVtb3JhYmxlSW5qdXJ5U2hlZXQgfSBmcm9tIFwiLi4vc2hlZXQvbWVtb3JhYmxlLWluanVyeS5qc1wiO1xuaW1wb3J0IHsgTXV0YXRpb25TaGVldCB9IGZyb20gXCIuLi9zaGVldC9tdXRhdGlvbi5qc1wiO1xuaW1wb3J0IHsgQW1tb1NoZWV0IH0gZnJvbSBcIi4uL3NoZWV0L2FtbW8uanNcIjtcbmltcG9ydCB7IEF1Z21lbnRpY1NoZWV0IH0gZnJvbSBcIi4uL3NoZWV0L2F1Z21lbnRpYy5qc1wiO1xuaW1wb3J0IHsgaW5pdGlhbGl6ZUhhbmRsZWJhcnMgfSBmcm9tIFwiLi9oYW5kbGViYXJzLmpzXCI7XG5pbXBvcnQgeyBtaWdyYXRlV29ybGQgfSBmcm9tIFwiLi9taWdyYXRpb24uanNcIjtcbmltcG9ydCB7IHByZXBhcmVDb21tb25Sb2xsLCBwcmVwYXJlV2VhcG9uUm9sbCwgcHJlcGFyZURhbWFnZVJvbGwsIHByZXBhcmVQc3ljaGljUm9sbCB9IGZyb20gXCIuL2RpYWxvZy5qc1wiO1xuaW1wb3J0IHsgY29tbW9uUm9sbCwgd2VhcG9uUm9sbCwgZGFtYWdlUm9sbCwgcHN5Y2hpY1JvbGwgfSBmcm9tIFwiLi9yb2xsLmpzXCI7XG5cbkhvb2tzLm9uY2UoXCJpbml0XCIsICgpID0+IHtcbiAgQ09ORklHLkFjdG9yLmRvY3VtZW50Q2xhc3MgPSBXcmF0aEFuZEdsb3J5QWN0b3I7XG4gIENPTkZJRy5JdGVtLmRvY3VtZW50Q2xhc3MgPSBXcmF0aEFuZEdsb3J5SXRlbTtcbiAgZ2FtZS53YWcgPSB7XG4gICAgcHJlcGFyZUNvbW1vblJvbGwsXG4gICAgcHJlcGFyZVdlYXBvblJvbGwsXG4gICAgcHJlcGFyZURhbWFnZVJvbGwsXG4gICAgcHJlcGFyZVBzeWNoaWNSb2xsLFxuICAgIGNvbW1vblJvbGwsXG4gICAgd2VhcG9uUm9sbCxcbiAgICBwc3ljaGljUm9sbCxcbiAgICBkYW1hZ2VSb2xsXG4gIH07XG4gIENPTkZJRy5Db21iYXQuaW5pdGlhdGl2ZSA9IHsgZm9ybXVsYTogXCIoQGF0dHJpYnV0ZXMuaW5pdGlhdGl2ZS50b3RhbClkNlwiLCBkZWNpbWFsczogMCB9O1xuICBBY3RvcnMudW5yZWdpc3RlclNoZWV0KFwiY29yZVwiLCBBY3RvclNoZWV0KTtcbiAgQWN0b3JzLnJlZ2lzdGVyU2hlZXQoXCJ3cmF0aC1hbmQtZ2xvcnlcIiwgQWdlbnRTaGVldCwgeyB0eXBlczogW1wiYWdlbnRcIl0sIG1ha2VEZWZhdWx0OiB0cnVlIH0pO1xuICBBY3RvcnMucmVnaXN0ZXJTaGVldChcIndyYXRoLWFuZC1nbG9yeVwiLCBUaHJlYXRTaGVldCwgeyB0eXBlczogW1widGhyZWF0XCJdLCBtYWtlRGVmYXVsdDogdHJ1ZSB9KTtcbiAgSXRlbXMudW5yZWdpc3RlclNoZWV0KFwiY29yZVwiLCBJdGVtU2hlZXQpO1xuICBJdGVtcy5yZWdpc3RlclNoZWV0KFwid3JhdGgtYW5kLWdsb3J5XCIsIEtleXdvcmRTaGVldCwgeyB0eXBlczogW1wia2V5d29yZFwiXSwgbWFrZURlZmF1bHQ6IHRydWUgfSk7XG4gIEl0ZW1zLnJlZ2lzdGVyU2hlZXQoXCJ3cmF0aC1hbmQtZ2xvcnlcIiwgVGFsZW50U2hlZXQsIHsgdHlwZXM6IFtcInRhbGVudFwiXSwgbWFrZURlZmF1bHQ6IHRydWUgfSk7XG4gIEl0ZW1zLnJlZ2lzdGVyU2hlZXQoXCJ3cmF0aC1hbmQtZ2xvcnlcIiwgQWJpbGl0eVNoZWV0LCB7IHR5cGVzOiBbXCJhYmlsaXR5XCJdLCBtYWtlRGVmYXVsdDogdHJ1ZSB9KTtcbiAgSXRlbXMucmVnaXN0ZXJTaGVldChcIndyYXRoLWFuZC1nbG9yeVwiLCBQc3ljaGljUG93ZXJTaGVldCwgeyB0eXBlczogW1wicHN5Y2hpY1Bvd2VyXCJdLCBtYWtlRGVmYXVsdDogdHJ1ZSB9KTtcbiAgSXRlbXMucmVnaXN0ZXJTaGVldChcIndyYXRoLWFuZC1nbG9yeVwiLCBBcm1vdXJTaGVldCwgeyB0eXBlczogW1wiYXJtb3VyXCJdLCBtYWtlRGVmYXVsdDogdHJ1ZSB9KTtcbiAgSXRlbXMucmVnaXN0ZXJTaGVldChcIndyYXRoLWFuZC1nbG9yeVwiLCBXZWFwb25TaGVldCwgeyB0eXBlczogW1wid2VhcG9uXCJdLCBtYWtlRGVmYXVsdDogdHJ1ZSB9KTtcbiAgSXRlbXMucmVnaXN0ZXJTaGVldChcIndyYXRoLWFuZC1nbG9yeVwiLCBXZWFwb25VcGdyYWRlU2hlZXQsIHsgdHlwZXM6IFtcIndlYXBvblVwZ3JhZGVcIl0sIG1ha2VEZWZhdWx0OiB0cnVlIH0pO1xuICBJdGVtcy5yZWdpc3RlclNoZWV0KFwid3JhdGgtYW5kLWdsb3J5XCIsIEdlYXJTaGVldCwgeyB0eXBlczogW1wiZ2VhclwiXSwgbWFrZURlZmF1bHQ6IHRydWUgfSk7XG4gIEl0ZW1zLnJlZ2lzdGVyU2hlZXQoXCJ3cmF0aC1hbmQtZ2xvcnlcIiwgQXNjZW5zaW9uU2hlZXQsIHsgdHlwZXM6IFtcImFzY2Vuc2lvblwiXSwgbWFrZURlZmF1bHQ6IHRydWUgfSk7XG4gIEl0ZW1zLnJlZ2lzdGVyU2hlZXQoXCJ3cmF0aC1hbmQtZ2xvcnlcIiwgVHJhdW1hdGljSW5qdXJ5U2hlZXQsIHsgdHlwZXM6IFtcInRyYXVtYXRpY0luanVyeVwiXSwgbWFrZURlZmF1bHQ6IHRydWUgfSk7XG4gIEl0ZW1zLnJlZ2lzdGVyU2hlZXQoXCJ3cmF0aC1hbmQtZ2xvcnlcIiwgTWVtb3JhYmxlSW5qdXJ5U2hlZXQsIHsgdHlwZXM6IFtcIm1lbW9yYWJsZUluanVyeVwiXSwgbWFrZURlZmF1bHQ6IHRydWUgfSk7XG4gIEl0ZW1zLnJlZ2lzdGVyU2hlZXQoXCJ3cmF0aC1hbmQtZ2xvcnlcIiwgTXV0YXRpb25TaGVldCwgeyB0eXBlczogW1wibXV0YXRpb25cIl0sIG1ha2VEZWZhdWx0OiB0cnVlIH0pO1xuICBJdGVtcy5yZWdpc3RlclNoZWV0KFwid3JhdGgtYW5kLWdsb3J5XCIsIEFtbW9TaGVldCwgeyB0eXBlczogW1wiYW1tb1wiXSwgbWFrZURlZmF1bHQ6IHRydWUgfSk7XG4gIEl0ZW1zLnJlZ2lzdGVyU2hlZXQoXCJ3cmF0aC1hbmQtZ2xvcnlcIiwgQW1tb1NoZWV0LCB7IHR5cGVzOiBbXCJhbW1vXCJdLCBtYWtlRGVmYXVsdDogdHJ1ZSB9KTtcbiAgSXRlbXMucmVnaXN0ZXJTaGVldChcIndyYXRoLWFuZC1nbG9yeVwiLCBBdWdtZW50aWNTaGVldCwgeyB0eXBlczogW1wiYXVnbWVudGljXCJdLCBtYWtlRGVmYXVsdDogdHJ1ZSB9KTtcbiAgaW5pdGlhbGl6ZUhhbmRsZWJhcnMoKTtcbiAgZ2FtZS5zZXR0aW5ncy5yZWdpc3RlcihcIndyYXRoLWFuZC1nbG9yeVwiLCBcIndvcmxkU2NoZW1hVmVyc2lvblwiLCB7XG4gICAgbmFtZTogXCJXb3JsZCBWZXJzaW9uXCIsXG4gICAgaGludDogXCJVc2VkIHRvIGF1dG9tYXRpY2FsbHkgdXBncmFkZSB3b3JsZHMgZGF0YSB3aGVuIHRoZSBzeXN0ZW0gaXMgdXBncmFkZWQuXCIsXG4gICAgc2NvcGU6IFwid29ybGRcIixcbiAgICBjb25maWc6IHRydWUsXG4gICAgZGVmYXVsdDogMCxcbiAgICB0eXBlOiBOdW1iZXIsXG4gIH0pO1xufSk7XG5cbkhvb2tzLm9uY2UoXCJyZWFkeVwiLCAoKSA9PiB7XG4gIG1pZ3JhdGVXb3JsZCgpO1xufSk7Il19

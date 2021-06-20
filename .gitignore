@@ -1,3 +1,7 @@
 .idea/
 .vscode/launch.json
 debug.log
+
+# TypeScript build artifacts
+node_modules
+scripts/**/*.d.ts
