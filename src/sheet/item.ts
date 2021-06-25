@@ -1,4 +1,4 @@
-import {Html} from "../types";
+import {Html} from "../types/wag-models";
 
 export class WrathAndGloryItemSheet extends ItemSheet {
   activateListeners(html: Html) {

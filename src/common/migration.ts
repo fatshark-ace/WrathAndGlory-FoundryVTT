@@ -1,5 +1,5 @@
-import {Scene, TokenData} from "../types";
 import {WrathAndGloryItem} from "./item";
+import {Scene, TokenData} from "../types/wag-models";
 
 export const migrateWorld = async () => {
     const schemaVersion = 1;

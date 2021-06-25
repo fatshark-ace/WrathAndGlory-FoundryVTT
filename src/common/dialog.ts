@@ -1,5 +1,5 @@
 import { commonRoll, weaponRoll, damageRoll, psychicRoll } from "./roll.js";
-import {Html, RollData} from "../types";
+import {Html, RollData} from "../types/wag-models";
 
 export async function prepareCommonRoll(rollData: RollData) {
   const html = await renderTemplate("systems/wrath-and-glory/template/dialog/common-roll.html", rollData);

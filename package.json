@@ -8,9 +8,10 @@
   "templateVersion": 2,
   "author": "Moo Man, Perfectro",
   "scripts": {
-    "build": "tsc"
+    "build": "esbuild src/common/hooks.ts --bundle --sourcemap --outfile=scripts/common/hooks.js"
   },
   "devDependencies": {
+    "esbuild": "^0.12.9",
     "typescript": "~4.3.4"
   },
   "dependencies": {}

@@ -5,3 +5,7 @@ debug.log
 # TypeScript build artifacts
 node_modules
 scripts/**/*.d.ts
+scripts/common/hooks.js*
+
+# Scratch directory
+.scratch/

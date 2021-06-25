@@ -1,6 +1,6 @@
 import { prepareCommonRoll, prepareWeaponRoll, prepareDamageRoll, preparePsychicRoll } from "../common/dialog.js";
 import { reroll } from "../common/roll.js";
-import {Html, RollData} from "../types";
+import {Html, RollData} from "../types/wag-models";
 
 export class WrathAndGloryActorSheet extends ActorSheet {
     rollData: RollData = {} as any;
@@ -57,7 +57,7 @@ export class WrathAndGloryActorSheet extends ActorSheet {
         return buttons;
     }
 
-    _onItemCreate(event: Event) {
+    _onItemCreate(event: FoundryEvent) {
         event.preventDefault();
         let header = event.currentTarget.dataset
         

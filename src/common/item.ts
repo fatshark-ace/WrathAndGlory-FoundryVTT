@@ -1,4 +1,4 @@
-import {ChatData} from "../types";
+import {ChatData} from "../types/wag-models";
 
 export class WrathAndGloryItem extends Item {
     async sendToChat() {

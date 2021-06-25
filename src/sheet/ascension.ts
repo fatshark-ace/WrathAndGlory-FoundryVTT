@@ -1,5 +1,5 @@
 import { WrathAndGloryItemSheet } from "./item.js";
-import {Html} from "../types";
+import {Html} from "../types/wag-models";
 
 export class AscensionSheet extends WrathAndGloryItemSheet {
     static get defaultOptions() {

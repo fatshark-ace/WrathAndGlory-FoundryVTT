@@ -1,4 +1,4 @@
-import {ChatData, Die, DieOptions, RollData} from "../types";
+import {ChatData, Die, DieOptions, RollData} from "../types/wag-models";
 
 export async function commonRoll(rollData: RollData) {
   _rollPoolDice(rollData);

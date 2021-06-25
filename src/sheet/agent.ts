@@ -1,5 +1,5 @@
 import { WrathAndGloryActorSheet } from "./actor.js";
-import {Html} from "../types";
+import {Html} from "../types/wag-models";
 
 export class AgentSheet extends WrathAndGloryActorSheet {
 

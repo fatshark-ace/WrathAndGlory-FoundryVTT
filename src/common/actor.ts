@@ -1,4 +1,4 @@
-import {Attribute, Combat, Data, Skill} from "../types";
+import {Attribute, Combat, Data, Skill} from "../types/wag-models";
 import {WrathAndGloryItem} from "./item";
 
 export class WrathAndGloryActor extends Actor {
